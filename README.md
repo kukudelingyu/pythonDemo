@@ -12,7 +12,7 @@
 ## 系统要求
 
 - Python 3.6+
-- MySQL数据库
+- MariaDB数据库
 
 ## 安装步骤
 
@@ -23,7 +23,7 @@
 pip install -r requirements.txt
 ```
 
-3. 配置MySQL数据库
+3. 配置MariaDB数据库
 - 创建数据库：
 ```sql
 CREATE DATABASE auth_db;
@@ -35,7 +35,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://用户名:密码@localh
 
 ## 部署到腾讯云
 
-1. 在腾讯云服务器上安装Python和MySQL
+1. 在腾讯云服务器上安装Python和MariaDB
 
 2. 上传项目文件到服务器
 
