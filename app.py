@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # 配置数据库连接
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:your_password@localhost/auth_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:l6600410@localhost/auth_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
