@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # 配置数据库连接
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:l6600410@49.232.235.71/auth_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:l6600410@localhost/auth_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -32,8 +32,11 @@ def register():
     if User.query.filter_by(username=data['username']).first():
         return jsonify({'error': '用户名已存在'}), 400
     
+    print(f'注册请求数据: {data}')
     hashed_password = sha256_crypt.hash(data['password'])
+    print(f'加密后的密码: {hashed_password}')
     new_user = User(username=data['username'], password=hashed_password)
+    print(f'新用户对象: {new_user}')
     
     try:
         db.session.add(new_user)
@@ -51,7 +54,9 @@ def login():
     if not data or 'username' not in data or 'password' not in data:
         return jsonify({'error': '请提供用户名和密码'}), 400
     
+    print(f'登录请求数据: {data}')
     user = User.query.filter_by(username=data['username']).first()
+    print(f'查询到的用户对象: {user}')
     
     if user and sha256_crypt.verify(data['password'], user.password):
         return jsonify({'message': '登录成功'}), 200
